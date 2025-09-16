@@ -104,4 +104,30 @@ class MagasinTest {
         assertEquals(0, items[0].sellIn);
         assertEquals(80, items[0].quality);
     }
+
+    @Test
+    @DisplayName("Magical Power quality should decrease twice as fast")
+    void magicalPowerQualityShouldDecreaseTwiceAsFast() {
+        Item[] items = {
+                new Item("Magical Power", 10, 10)
+        };
+        Magasin magasin = new Magasin(items);
+        magasin.updateQuality();
+
+        assertEquals(9, items[0].sellIn);
+        assertEquals(8, items[0].quality);
+    }
+
+    @Test
+    @DisplayName("Magical Power quality decreases by 4 after expiration")
+    void magicalPowerQualityDecreasesByFourAfterExpiration() {
+        Item[] items = {
+                new Item("Magical Power", 0, 10)
+        };
+        Magasin magasin = new Magasin(items);
+        magasin.updateQuality();
+
+        assertEquals(-1, items[0].sellIn);
+        assertEquals(6, items[0].quality);
+    }
 }

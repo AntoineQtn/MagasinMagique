@@ -38,7 +38,11 @@ class Magasin {
                         item.quality++;
                     }
                 }
-            } else {
+            } else if (name.equals("Magical Power")) {
+                int degradation = (item.sellIn < 0) ? 4 : 2;
+                item.quality = Math.max(0, item.quality - degradation);
+            }
+            else {
                 if (item.quality > 0) {
                     item.quality--;
                     if (item.sellIn < 0 && item.quality > 0) {
